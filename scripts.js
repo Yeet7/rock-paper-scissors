@@ -11,6 +11,7 @@ var computerScore = 0;
 var rockbtn = document.querySelector("#rock-btn");
 var paperbtn = document.querySelector("#paper-btn");
 var scissorsbtn = document.querySelector("#scissors-btn");
+const results = document.querySelector("#result");
 
 
 const beats = {
@@ -34,14 +35,17 @@ function getComputerChoice() {
 
 const onClickRock = rockbtn.addEventListener("click", () => {
     console.log("rock");
+    playGame("rock");
 })
 
 const onClickPaper = paperbtn.addEventListener("click", () => {
     console.log("paper");
+    playGame("paper");
 })
 
 const onClickScissors = scissorsbtn.addEventListener("click", () => {
     console.log("scissors");
+    playGame("scissors");
 })
 
 
@@ -49,76 +53,24 @@ const onClickScissors = scissorsbtn.addEventListener("click", () => {
 
 
 function playRound(computerChoice, humanChoice) {
-    switch (humanChoice) {
-        case "paper":
-            if (computerChoice === "rock") {
-                console.log("You won against the computer!");
-                humanScore++;
-            }
-            else if (computerChoice === "scissors") {
-                console.log("You lost against the computer!");
-                computerScore++;
-            }
-            else {
-                console.log("You tied against the computer!");
-                computerScore++;
-                humanScore++;
-            }
-            break;
-        case "rock":
-            if (computerChoice === "scissors") {
-                console.log("You won against the computer!");
-                humanScore++;
-            }
-            else if (computerChoice === "paper") {
-                console.log("You lost against the computer!");
-                computerScore++;
-            }
-            else {
-                console.log("You tied against the computer!");
-                computerScore++;
-                humanScore++;
-            }
-            break;
-        case "scissors":
-            if (computerChoice === "paper") {
-                console.log("You won against the computer!");
-                humanScore++;
-            }
-            else if (computerChoice === "rock") {
-                console.log("You lost against the computer!");
-                computerScore++;
-            }
-            else {
-                console.log("You tied against the computer!");
-                computerScore++;
-                humanScore++;
-            }
-            break;
-        default:
-            console.log("You failed to enter a proper move, computer wins!");
-            computerScore++;
-            break;
+    if (![beats] === humanChoice) {
+        alert("ERROR! Invalid!")
+    } else if (humanChoice === computerChoice) {
+        console.log(`Tied! ${humanChoice} vs ${computerChoice}`)
+    } else if (beats[humanChoice] === computerChoice) {
+        humanScore++;
+    } else if (beats[humanChoice] !== computerChoice) {
+        computerScore++;
     }
 
-    console.log("\n Computer Score: " + computerScore);
+    console.log("\n\n Computer Score: " + computerScore);
     console.log("\n Human Score: " + humanScore);
 }
 
 
-function playGame(){
+function playGame(humanChoice) {
 
-
-
-    if(humanScore > computerScore){
-        console.log("You win the entire game!");
-    }
-    else if(humanScore < computerScore){
-        console.log("You lost the entire game!");
-    }
-    else{
-        console.log("You tied the whole game!");
+    if(humanScore < 5 && computerScore < 5){
+        playRound(getComputerChoice(), humanChoice);
     }
 }
-
-playGame();
