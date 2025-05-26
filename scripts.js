@@ -1,36 +1,23 @@
 /*
 TODO:
 
-    1. Create function that will randomly determine; rock, paper, or scissors.
-        - math.random(), if num 0 > 0.3 => scissors, etc.
-    2. Write for input of user choice (prompt), store the variable.
-        - prompt: Input choice of rock paper or scissors.
-        - let humanChoice = prompt()
-        - return humanChoice
-    3. Create human & computerscore
-        - humanScore = 0
-        - computerScore = 0
-    4. Create playRound function, and update human/computer score depending
-        - playRound{
-            wrap all variables:
-            switch (getHumanChoice){
-                case paper{
-                    if (getComputerChoice === rock){
-                        log "you lose"
-                    }
-                }
-            }
-        }
-    5. Create playGame, move prev. variables to within new func. Play 5 rounds.
-        playGame(){
-            if choice === choice {
-                break
-            }
-        }
-        -for loop everything to iterate 5 times.
 
 */
 console.log("Hello!")
+
+var humanScore = 0;
+var computerScore = 0;
+
+var rockbtn = document.querySelector("#rock-btn");
+var paperbtn = document.querySelector("#paper-btn");
+var scissorsbtn = document.querySelector("#scissors-btn");
+
+
+const beats = {
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper",
+}
 
 function getComputerChoice() {
     numChoice = Math.random();
@@ -44,13 +31,22 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Please enter your choice of rock, paper, or scissors: ");
-    return humanChoice;
-}
 
-var humanScore = 0;
-var computerScore = 0;
+const onClickRock = rockbtn.addEventListener("click", () => {
+    console.log("rock");
+})
+
+const onClickPaper = paperbtn.addEventListener("click", () => {
+    console.log("paper");
+})
+
+const onClickScissors = scissorsbtn.addEventListener("click", () => {
+    console.log("scissors");
+})
+
+
+
+
 
 function playRound(computerChoice, humanChoice) {
     switch (humanChoice) {
@@ -111,9 +107,8 @@ function playRound(computerChoice, humanChoice) {
 
 
 function playGame(){
-    for(var i = 0; i < 5; i++){
-        playRound(getComputerChoice(),getHumanChoice());
-    }
+
+
 
     if(humanScore > computerScore){
         console.log("You win the entire game!");
