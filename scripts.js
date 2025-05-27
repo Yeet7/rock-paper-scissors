@@ -8,6 +8,7 @@ console.log("Hello!")
 var humanScore = 0;
 var computerScore = 0;
 
+var button = document.querySelector("button")
 var rockbtn = document.querySelector("#rock-btn");
 var paperbtn = document.querySelector("#paper-btn");
 var scissorsbtn = document.querySelector("#scissors-btn");
@@ -34,25 +35,27 @@ function getComputerChoice() {
 
 
 const onClickRock = rockbtn.addEventListener("click", () => {
-    console.log("rock");
-    playGame("rock");
+    playRound(getComputerChoice(), "rock");
 })
 
 const onClickPaper = paperbtn.addEventListener("click", () => {
-    console.log("paper");
-    playGame("paper");
+    playRound(getComputerChoice(), "paper");
 })
 
 const onClickScissors = scissorsbtn.addEventListener("click", () => {
-    console.log("scissors");
-    playGame("scissors");
+    playRound(getComputerChoice(), "scissors");
 })
+
 
 
 
 
 
 function playRound(computerChoice, humanChoice) {
+
+    if(humanScore >= 5 || computerScore >= 5){
+        results.textContent = `Results: Player ${humanScore} vs Computer ${computerScore}`
+    }else {
     if (![beats] === humanChoice) {
         alert("ERROR! Invalid!")
     } else if (humanChoice === computerChoice) {
@@ -66,11 +69,4 @@ function playRound(computerChoice, humanChoice) {
     console.log("\n\n Computer Score: " + computerScore);
     console.log("\n Human Score: " + humanScore);
 }
-
-
-function playGame(humanChoice) {
-
-    if(humanScore < 5 && computerScore < 5){
-        playRound(getComputerChoice(), humanChoice);
-    }
 }
